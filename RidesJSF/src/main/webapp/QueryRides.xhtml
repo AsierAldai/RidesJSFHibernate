@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Query Rides</title>
+	</h:head>
+	<h:body>
+		<h:form id="nireForm">
+			<h3>Query Rides</h3>
+			<table>
+				<tr>
+					<td>From:</td>
+					<td><h:selectOneMenu id="departCities" value="#{queryRide.selectedCity}">
+						<f:selectItems value="#{queryRide.departCities}"/>
+						<f:ajax event="valueChange" listener="#{queryRide.onChange}" execute="@this" render="arriveCities rideTaula"></f:ajax>
+					</h:selectOneMenu></td>
+				</tr>
+				<tr>
+					<td>To:</td>
+					<td><h:selectOneMenu id="arriveCities" value="#{queryRide.arrivedCity}">
+						<f:selectItems value="#{queryRide.arrivalCities}"/>
+						<f:ajax event="valueChange" listener="#{queryRide.onChange}" execute="@this" render="rideTaula"></f:ajax>
+					</h:selectOneMenu></td>
+				</tr>
+				<tr>
+					<td>Date:</td>
+					<td><p:calendar id="data" value="#{queryRide.data}" navigator="false" mode="inline">
+					<p:ajax event="dateSelect" listener="#{queryRide.onChange}" process="@this" update="rideTaula"></p:ajax>
+					</p:calendar></td>
+				</tr>
+			</table>
+			<p>
+				<h:commandButton value="Back" immediate="true" action="#{queryRide.menuEraman}"/>
+			</p>
+			<table>
+				<tr>
+					<td><p:dataTable id="rideTaula" value="#{queryRide.rideList}" var="item" border="1" rowKey="#{item.rideNumber}">
+						<f:facet name="header">Rides:</f:facet>
+						<p:column headerText="Driver">#{item.driver.getEmail()}</p:column>
+						<p:column headerText="Seats">#{item.nPlaces}</p:column>
+						<p:column headerText="Price">#{item.price}</p:column>
+					</p:dataTable></td>
+				</tr>
+			</table>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

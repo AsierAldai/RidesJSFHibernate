@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Create Ride</title>
+	</h:head>
+	<h:body>
+		<h:form id="nireForm">
+			<h:messages id="msgs" style="color:red" globalOnly="false" />
+			<h3>Mesedez informazioa sartu</h3>
+			<table id="tabla">
+				<tr>
+					<td>From:</td>
+					<td><h:inputText id="nondik" value="#{createRide.nondik}">
+								<f:validateRegex pattern="^(([a-z]|[A-Z])+[0-9]?)$"/>
+					</h:inputText></td>
+					<td><h:message for="nondik" style="color:red"/></td>
+				</tr>
+				<tr>
+					<td>To:</td>
+					<td><h:inputText id="nora" value="#{createRide.nora}">
+								<f:validateRegex pattern="^(([a-z]|[A-Z])+[0-9]?)$"/>
+					</h:inputText></td>
+					<td><h:message for="nora" style="color:red"/></td>
+				</tr>
+				<tr>
+					<td>Date:</td>
+					<td><p:calendar id="data" value="#{createRide.data}" navigator="false" mode="inline">
+					</p:calendar></td>
+				</tr>
+				<tr>
+					<td>Seats:</td>
+					<td><h:inputText id="eser" value="#{createRide.eserleku}">
+						<f:convertNumber integerOnly="true"></f:convertNumber>
+					</h:inputText></td>
+					<td><h:message for="eser" style="color:red"/></td>
+				</tr>
+				<tr>
+					<td>Price:</td>
+					<td><h:inputText id="prez" value="#{createRide.prezio}">
+					</h:inputText></td>
+					<td><h:message for="prez" style="color:red"/></td>
+				</tr>
+			</table>
+			<p>
+				<h:commandButton value="Create Ride" action="#{createRide.createRide}"/>
+				<h:commandButton value="Back" immediate="true" style="margin-left:10px" action="#{createRide.menuEraman}"/>
+			</p>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

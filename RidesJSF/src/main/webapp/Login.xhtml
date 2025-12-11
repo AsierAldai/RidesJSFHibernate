@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Login</title>
+	</h:head>
+	<h:body>
+		<h:form id="nireForm">
+			<h:messages id="msgs" style="color:red" globalOnly="false" />
+			<h3>Mesedez informazioa sartu</h3>
+			<table id="tabla">
+				<tr>
+					<td>Email:</td>
+					<td><h:inputText id="email" value="#{login.email}">
+					</h:inputText></td>
+					<td><h:message for="email" style="color:red"/></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><h:inputSecret id="pass" redisplay="true" value="#{login.pasahitza}">
+						</h:inputSecret></td>
+					<td><h:message for="pass" style="color:red" /></td>
+				</tr>
+			</table>
+			<p>
+				<h:commandButton value="Log In" action="#{login.login}"/>
+				<h:commandButton value="Back" immediate="true" style="margin-left:10px" action="#{login.homeEraman}"/>
+			</p>
+		</h:form>
+	</h:body>
+</f:view>
+</html>
