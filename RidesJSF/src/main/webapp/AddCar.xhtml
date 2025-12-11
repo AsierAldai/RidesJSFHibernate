@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Add Car</title>
+	</h:head>
+	<h:body>
+		<h:form id="nireForm">
+			<h:messages id="msgs" style="color:red" globalOnly="false" />
+			<h3>Please Insert the Information</h3>
+			<table id="tabla">
+				<tr>
+					<td>Plate:</td>
+					<td><h:inputText id="plate" value="#{car.plate}">
+					</h:inputText></td>
+					<td><h:message for="plate" style="color:red"/></td>
+				</tr>
+				<tr>
+					<td>Seats:</td>
+					<td><h:inputText id="seats" value="#{car.seats}">
+					</h:inputText></td>
+					<td><h:message for="seats" style="color:red"/></td>
+				</tr>
+			</table>
+			<p>
+				<h:commandButton value="Add Car" action="#{car.addCar}"/>
+				<h:commandButton value="Back" immediate="true" style="margin-left:10px" action="#{car.menuEraman}"/>
+			</p>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

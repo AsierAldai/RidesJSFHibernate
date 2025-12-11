@@ -19,7 +19,7 @@ public class Driver implements Serializable{
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST, mappedBy="driver")
 	private List<Ride> rides=new Vector<Ride>();
 	private String password;
-	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST, mappedBy="cDriver")
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST, mappedBy="driver")
 	private List<Car> cars = new Vector<Car>();
 
 	public Driver() {
@@ -124,4 +124,9 @@ public class Driver implements Serializable{
 		} else return null;
 	}
 	
+	public Car addCar(String plate, int seats) {
+		Car car = new Car(plate, seats, this);
+		cars.add(car);
+		return car;
+	}
 }

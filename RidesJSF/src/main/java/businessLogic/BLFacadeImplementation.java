@@ -2,6 +2,7 @@ package businessLogic;
 import java.util.Date;
 import java.util.List;
 import dataAccess.HibernateDataAccess;
+import domain.Car;
 import domain.Driver;
 import domain.Ride;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -96,6 +97,10 @@ public class BLFacadeImplementation  implements BLFacade {
 	
 	public String login(String mail, String pass) {
 		return dbManager.login(mail, pass);
+	}
+	
+	public Car addCar(String plate, int seats, String dMail) throws Exception{
+		return dbManager.addCar(plate, seats, dMail);
 	}
 
 }

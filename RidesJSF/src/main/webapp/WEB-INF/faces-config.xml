@@ -30,6 +30,14 @@ https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_3_0.xsd"
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
+		<display-name>Menu.xhtml</display-name>
+		<from-view-id>/Menu.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>car</from-outcome>
+			<to-view-id>/AddCar.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
 		<display-name>CreateRide.xhtml</display-name>
 		<from-view-id>/CreateRide.xhtml</from-view-id>
 		<navigation-case>
@@ -83,6 +91,14 @@ https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_3_0.xsd"
 		<navigation-case>
 			<from-outcome>home</from-outcome>
 			<to-view-id>/Home.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>AddCar.xhtml</display-name>
+		<from-view-id>/AddCar.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>menu</from-outcome>
+			<to-view-id>/Menu.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 </faces-config>

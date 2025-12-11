@@ -17,6 +17,12 @@ public class Car implements Serializable{
 	private Driver driver;
 	
 	
+	public Car(String plate, int seats, Driver driver) {
+		this.plate = plate;
+		this.seats = seats;
+		this.driver = driver;
+	}
+	
 	public String getPlate() {
 		return plate;
 	}

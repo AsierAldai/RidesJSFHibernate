@@ -16,6 +16,7 @@ import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import configuration.UtilDate;
+import domain.Car;
 import domain.Driver;
 import domain.Ride;
 import eredua.JPAUtil;
@@ -174,7 +175,6 @@ public class HibernateDataAccess {
 		} finally {
 			db.close();
 		}
-
 	}
 
 	/**
@@ -267,12 +267,30 @@ public class HibernateDataAccess {
 		try {
 			System.out.println(">> DataAccess: login => " + "email: " + mail + " password: " +pass);
 			Driver driver = db.find(Driver.class, mail);
-			System.out.println(driver.getEmail());
 			if (driver != null && driver.getPassword().equals(pass)) {
 				return "loginSucc";
 			}else {
 				return "notfound";
 			}
+		}finally {
+			db.close();
+		}
+	}
+	
+	public Car addCar(String plate, int seats, String dMail) throws Exception{
+		EntityManager db = JPAUtil.getEntityManager();
+		try {
+			System.out.println(">> DataAccess: addCar => " + "plate: " + plate + " seats: " + seats + " driver: " + dMail);
+			Car car = db.find(Car.class, plate);
+			if (car != null) {
+				throw new Exception("This car is already attached to a Driver.");
+			}
+			db.getTransaction().begin();
+			Driver driver = db.find(Driver.class, dMail);
+			Car addedCar = driver.addCar(plate, seats);
+			db.persist(addedCar);
+			db.getTransaction().commit();
+			return addedCar;
 		}finally {
 			db.close();
 		}

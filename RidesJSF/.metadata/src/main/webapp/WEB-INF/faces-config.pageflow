@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf17652797320660" configfile="/RidesJSF/src/main/webapp/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="Menu.xhtml" x="338" y="370" id="pf17652798954431" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf17652798954432 pf17652798954433 pf17653629394971" inlinks="pf17652798954434 pf17652798954435 pf17653607051990" path="/Menu.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="CreateRide.xhtml" x="122" y="178" id="pf17652798954436" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf17652798954434" inlinks="pf17652798954432" path="/CreateRide.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="QueryRides.xhtml" x="122" y="562" id="pf17652798954437" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf17652798954435" inlinks="pf17652798954433" path="/QueryRides.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="Home.xhtml" id="pf17652798954448" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf17652798954449 pf176527989544410" inlinks="pf176527989544412 pf17653040526980 pf17653629394971" path="/Home.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="Login.xhtml" id="pf176527989544413" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf17653040526980 pf17653607051990" inlinks="pf17652798954449" path="/Login.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="Register.xhtml" id="pf176527989544414" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf176527989544412" inlinks="pf176527989544410" path="/Register.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Menu.xhtml" x="338" y="370" id="pf17652798954431" referenceLink="//@navigationRule.11/@navigationCase.0/@toViewId|" outlinks="pf17652798954432 pf17652798954433 pf17653629394971 pf17654842792290" inlinks="pf17652798954434 pf17652798954435 pf17653607051990 pf17654843164763" path="/Menu.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="CreateRide.xhtml" x="122" y="178" id="pf17652798954436" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf17652798954434" inlinks="pf17652798954432" path="/CreateRide.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="QueryRides.xhtml" x="122" y="562" id="pf17652798954437" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf17652798954435" inlinks="pf17652798954433" path="/QueryRides.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Home.xhtml" id="pf17652798954448" referenceLink="//@navigationRule.11/@navigationCase.0/@toViewId|" outlinks="pf17652798954449 pf176527989544410" inlinks="pf176527989544412 pf17653040526980 pf17653629394971" path="/Home.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Login.xhtml" id="pf176527989544413" referenceLink="//@navigationRule.8/@fromViewId|" outlinks="pf17653040526980 pf17653607051990" inlinks="pf17652798954449" path="/Login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Register.xhtml" id="pf176527989544414" referenceLink="//@navigationRule.11/@fromViewId|" outlinks="pf176527989544412" inlinks="pf176527989544410" path="/Register.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="AddCar.xhtml" id="pf17654842792291" referenceLink="//@navigationRule.11/@fromViewId|" outlinks="pf17654843164763" inlinks="pf17654842792290" path="/AddCar.xhtml"/>
   <links id="pf17652798954432" target="pf17652798954436" source="pf17652798954431" outcome="create"/>
   <links id="pf17652798954433" target="pf17652798954437" source="pf17652798954431" outcome="query"/>
   <links id="pf17652798954434" target="pf17652798954431" source="pf17652798954436" outcome="menu"/>
@@ -16,4 +17,6 @@
   <links id="pf17653040526980" target="pf17652798954448" source="pf176527989544413" outcome="home"/>
   <links id="pf17653607051990" target="pf17652798954431" source="pf176527989544413" outcome="loginSucc"/>
   <links id="pf17653629394971" target="pf17652798954448" source="pf17652798954431" outcome="logout"/>
+  <links id="pf17654842792290" target="pf17654842792291" source="pf17652798954431" outcome="car"/>
+  <links id="pf17654843164763" target="pf17652798954431" source="pf17654842792291" outcome="menu"/>
 </pageflow:Pageflow>

@@ -3,6 +3,7 @@ package businessLogic;
 import java.util.Date;
 import java.util.List;
 
+import domain.Car;
 import domain.Driver;
 //import domain.Booking;
 import domain.Ride;
@@ -73,6 +74,8 @@ public interface BLFacade  {
 	public Driver register(String izen, String mail, String pass) throws Exception;
 	
 	public String login(String mail, String pass);
+	
+	public Car addCar(String plate, int seats, String dMail) throws Exception;
 
 	
 }

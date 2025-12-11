@@ -20,6 +20,8 @@ public class Ride implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "driver_email")
 	private Driver driver;
+	@ManyToOne
+	@JoinColumn(name = "ride_car")
 	private Car car;
 	
 	public Ride(){
@@ -174,14 +176,16 @@ public class Ride implements Serializable {
 		this.price = price;
 	}
 
+	public Car getCar() {
+		return car;
+	}
 
+	public void setCar(Car car) {
+		this.car = car;
+	}
 
 	public String toString(){
 		return rideNumber+";"+";"+rFrom+";"+rTo+";"+date;  
 	}
 
-
-
-
-	
 }
