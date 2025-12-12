@@ -17,20 +17,20 @@
 					<td>From:</td>
 					<td><h:selectOneMenu id="departCities" value="#{queryRide.selectedCity}">
 						<f:selectItems value="#{queryRide.departCities}"/>
-						<f:ajax event="valueChange" listener="#{queryRide.onChange}" execute="@this" render="arriveCities rideTaula"></f:ajax>
+						<f:ajax listener="#{queryRide.updateArrivalCities}" execute="@this data" render="arriveCities rideTaula"></f:ajax>
 					</h:selectOneMenu></td>
 				</tr>
 				<tr>
 					<td>To:</td>
 					<td><h:selectOneMenu id="arriveCities" value="#{queryRide.arrivedCity}">
 						<f:selectItems value="#{queryRide.arrivalCities}"/>
-						<f:ajax event="valueChange" listener="#{queryRide.onChange}" execute="@this" render="rideTaula"></f:ajax>
+						<f:ajax listener="#{queryRide.updateRides}" execute="@this departCities data" render="rideTaula"></f:ajax>
 					</h:selectOneMenu></td>
 				</tr>
 				<tr>
 					<td>Date:</td>
 					<td><p:calendar id="data" value="#{queryRide.data}" navigator="false" mode="inline">
-					<p:ajax event="dateSelect" listener="#{queryRide.onChange}" process="@this" update="rideTaula"></p:ajax>
+					<p:ajax event="dateSelect" listener="#{queryRide.updateRides}" process="@this departCities arriveCities" update="rideTaula"></p:ajax>
 					</p:calendar></td>
 				</tr>
 			</table>

@@ -28,7 +28,7 @@ public class Ride implements Serializable {
 		super();
 	}
 	
-	public Ride(Integer rideNumber, String from, String to, Date date, int nPlaces, float price, Driver driver) {
+	public Ride(Integer rideNumber, String from, String to, Date date, int nPlaces, float price, Driver driver, Car car) {
 		super();
 		this.rideNumber = rideNumber;
 		this.rFrom = from;
@@ -37,11 +37,12 @@ public class Ride implements Serializable {
 		this.date=date;
 		this.price=price;
 		this.driver = driver;
+		this.car = car;
 	}
 
 	
 
-	public Ride(String from, String to,  Date date, int nPlaces, float price, Driver driver) {
+	public Ride(String from, String to,  Date date, int nPlaces, float price, Driver driver, Car car) {
 		super();
 		this.rFrom = from;
 		this.rTo = to;
@@ -49,6 +50,7 @@ public class Ride implements Serializable {
 		this.date=date;
 		this.price=price;
 		this.driver = driver;
+		this.car = car;
 	}
 	
 	/**

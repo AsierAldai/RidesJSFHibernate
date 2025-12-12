@@ -43,7 +43,7 @@ public interface BLFacade  {
 	 * @throws RideMustBeLaterThanTodayException if the ride date is before today 
  	 * @throws RideAlreadyExistException if the same ride already exists for the driver
 	 */
-   public Ride createRide( String from, String to, Date date, int nPlaces, float price, String driverEmail) throws RideMustBeLaterThanTodayException, RideAlreadyExistException;
+   public Ride createRide( String from, String to, Date date, int nPlaces, float price, String driverEmail, Car car) throws RideMustBeLaterThanTodayException, RideAlreadyExistException;
 	
 	
 	/**
@@ -76,6 +76,8 @@ public interface BLFacade  {
 	public String login(String mail, String pass);
 	
 	public Car addCar(String plate, int seats, String dMail) throws Exception;
+	
+	public List<Car> getCarPlates(String dMail);
 
 	
 }

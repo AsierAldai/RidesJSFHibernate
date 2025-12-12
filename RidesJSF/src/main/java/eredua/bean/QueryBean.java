@@ -1,6 +1,8 @@
 package eredua.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import businessLogic.BLFacade;
@@ -32,6 +34,7 @@ public class QueryBean implements Serializable {
 	            arrivedCity = arrivals.get(0);
 	        }
 	    }
+	    updateRides();
 	}
 
 	
@@ -56,7 +59,17 @@ public class QueryBean implements Serializable {
 	}
 
 	public void setData(Date data) {
-		this.data = data;
+		if (data != null) {
+	        Calendar cal = Calendar.getInstance();
+	        cal.setTime(data);
+	        cal.set(Calendar.HOUR_OF_DAY, 0);
+	        cal.set(Calendar.MINUTE, 0);
+	        cal.set(Calendar.SECOND, 0);
+	        cal.set(Calendar.MILLISECOND, 0);
+	        this.data = cal.getTime();
+	    } else {
+	        this.data = null;
+	    }
 	}
 
 	public int getEserleku() {
@@ -87,17 +100,22 @@ public class QueryBean implements Serializable {
 		this.rideList = rideList;
 	}
 	
-	public List<Ride> saveRides(){
-		this.rideList = facadeBL.getRides(selectedCity, arrivedCity, data);
-		return rideList;
+	public void updateArrivalCities(AjaxBehaviorEvent event) {
+	    List<String> arrivals = facadeBL.getDestinationCities(selectedCity);
+	    
+	    if (arrivals != null && !arrivals.isEmpty()) {
+	        arrivedCity = arrivals.get(0);
+	    } else {
+	        arrivedCity = null;
+	    }
+	    updateRides(); 
 	}
-	
+
 	public void updateRides() {
-		List<Ride> itzul = saveRides();
-	}
-	
-	public void onChange(AjaxBehaviorEvent ev) {
-		List<String> arrivals = getArrivalCities();
-		updateRides();
+	    if (selectedCity != null && arrivedCity != null && data != null) {
+	        rideList = facadeBL.getRides(selectedCity, arrivedCity, data);
+	    } else {
+	        rideList = new ArrayList<>();
+	    }
 	}
 }

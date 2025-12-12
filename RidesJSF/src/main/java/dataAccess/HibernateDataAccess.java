@@ -63,6 +63,7 @@ public class HibernateDataAccess {
 				Driver driver3 = new Driver("driver3@gmail.com", "Test driver");
 
 				// Create rides
+				/*
 				driver1.addRide("Donostia", "Bilbo", UtilDate.newDate(year, month, 15), 4, 7);
 				driver1.addRide("Donostia", "Gazteiz", UtilDate.newDate(year, month, 6), 4, 8);
 				driver1.addRide("Bilbo", "Donostia", UtilDate.newDate(year, month, 25), 4, 4);
@@ -74,6 +75,7 @@ public class HibernateDataAccess {
 				driver2.addRide("Eibar", "Gasteiz", UtilDate.newDate(year, month, 6), 2, 5);
 
 				driver3.addRide("Bilbo", "Donostia", UtilDate.newDate(year, month, 14), 1, 3);
+				*/
 
 				db.persist(driver1);
 				db.persist(driver2);
@@ -142,7 +144,7 @@ public class HibernateDataAccess {
 	 * @throws RideAlreadyExistException         if the same ride already exists for
 	 *                                           the driver
 	 */
-	public Ride createRide(String from, String to, Date date, int nPlaces, float price, String driverEmail)
+	public Ride createRide(String from, String to, Date date, int nPlaces, float price, String driverEmail, Car car)
 			throws RideAlreadyExistException, RideMustBeLaterThanTodayException {
 		EntityManager db = JPAUtil.getEntityManager();
 		System.out.println(">> DataAccess: createRide=> from= " + from + " to= " + to + " driver=" + driverEmail
@@ -162,7 +164,7 @@ public class HibernateDataAccess {
 						ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
 			}
 			System.out.println("crea addRide");
-			Ride ride = driver.addRide(from, to, date, nPlaces, price);
+			Ride ride = driver.addRide(from, to, date, nPlaces, price, car);
 			// next instruction can be obviated
 			db.persist(driver);
 			db.getTransaction().commit();
@@ -291,6 +293,19 @@ public class HibernateDataAccess {
 			db.persist(addedCar);
 			db.getTransaction().commit();
 			return addedCar;
+		}finally {
+			db.close();
+		}
+	}
+	
+	public List<Car> getCarPlates(String dMail){
+		EntityManager db = JPAUtil.getEntityManager();
+		try {
+			System.out.println(">> DataAccess: getCarPlates => " + "dMail " + dMail);
+			Driver driver = db.find(Driver.class, dMail);
+			List<Car> cars = driver.getCars();
+			cars.size();
+			return cars;
 		}finally {
 			db.close();
 		}

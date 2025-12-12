@@ -22,9 +22,11 @@
 				</tr>
 				<tr>
 					<td>Seats:</td>
-					<td><h:inputText id="seats" value="#{car.seats}">
-					</h:inputText></td>
-					<td><h:message for="seats" style="color:red"/></td>
+					<td><h:inputText id="seats" value="#{car.seats}" validatorMessage="Seats must be between 2 and 5.">
+							<f:convertNumber integerOnly="true" />
+							<f:validateLongRange minimum="2" maximum="5" />
+						</h:inputText></td>
+					<td><h:message for="seats" style="color:red" errorClass="error"/></td>
 				</tr>
 			</table>
 			<p>

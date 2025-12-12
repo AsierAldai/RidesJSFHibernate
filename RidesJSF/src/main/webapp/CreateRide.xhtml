@@ -34,11 +34,10 @@
 					</p:calendar></td>
 				</tr>
 				<tr>
-					<td>Seats:</td>
-					<td><h:inputText id="eser" value="#{createRide.eserleku}">
-						<f:convertNumber integerOnly="true"></f:convertNumber>
-					</h:inputText></td>
-					<td><h:message for="eser" style="color:red"/></td>
+					<td>Car:</td>
+					<td><h:selectOneMenu id="carSelect" value="#{createRide.selectedCarPlate}">
+						<f:selectItems value="#{createRide.carPlates}"/>
+					</h:selectOneMenu></td>
 				</tr>
 				<tr>
 					<td>Price:</td>

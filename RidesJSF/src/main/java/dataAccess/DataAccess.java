@@ -82,7 +82,7 @@ public class DataAccess  {
 			Driver driver2=new Driver("driver2@gmail.com","Ane Gaztañaga");
 			Driver driver3=new Driver("driver3@gmail.com","Test driver");
 
-			
+			/*
 			//Create rides
 			driver1.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 4, 7);
 			driver1.addRide("Donostia", "Gazteiz", UtilDate.newDate(year,month,6), 4, 8);
@@ -95,7 +95,7 @@ public class DataAccess  {
 			driver2.addRide("Eibar", "Gasteiz", UtilDate.newDate(year,month,6), 2, 5);
 
 			driver3.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,14), 1, 3);
-
+*/
 			
 						
 			db.persist(driver1);
@@ -161,7 +161,7 @@ public class DataAccess  {
 				throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
 			}
 			System.out.println("crea addRide");
-			Ride ride = driver.addRide(from, to, date, nPlaces, price);
+			Ride ride = driver.addRide(from, to, date, nPlaces, price, null);
 			//next instruction can be obviated
 			db.persist(driver); 
 			db.getTransaction().commit();

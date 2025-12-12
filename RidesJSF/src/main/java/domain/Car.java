@@ -16,6 +16,9 @@ public class Car implements Serializable{
 	@JoinColumn(name = "driver_car")
 	private Driver driver;
 	
+	public Car() {
+		super();
+	}
 	
 	public Car(String plate, int seats, Driver driver) {
 		this.plate = plate;

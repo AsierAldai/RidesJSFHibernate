@@ -61,6 +61,22 @@ public class Driver implements Serializable{
 		this.password = password;
 	}
 
+	public List<Ride> getRides() {
+		return rides;
+	}
+
+	public void setRides(List<Ride> rides) {
+		this.rides = rides;
+	}
+
+	public List<Car> getCars() {
+		return cars;
+	}
+
+	public void setCars(List<Car> cars) {
+		this.cars = cars;
+	}
+
 	public String toString(){
 		return name + email + rides;
 	}
@@ -72,8 +88,8 @@ public class Driver implements Serializable{
 	 * @param betMinimum of that question
 	 * @return Bet
 	 */
-	public Ride addRide(String from, String to, Date date, int nPlaces, float price)  {
-        Ride ride=new Ride(from,to,date,nPlaces,price, this);
+	public Ride addRide(String from, String to, Date date, int nPlaces, float price, Car car)  {
+        Ride ride=new Ride(from,to,date,nPlaces,price, this, car);
         rides.add(ride);
         return ride;
 	}

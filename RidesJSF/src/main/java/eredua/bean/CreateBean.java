@@ -2,7 +2,11 @@ package eredua.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Vector;
+
 import businessLogic.BLFacade;
+import domain.Car;
 import domain.Ride;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -21,12 +25,21 @@ public class CreateBean implements Serializable {
 	private int eserleku;
 	private float prezio;
 	private String dMail;
+	private List<Car> carList;
+	private Car selectedCar;
+	private String selectedCarPlate;
 	
 	BLFacade facadeBL=FacadeBean.getBusinessLogic();
 
 	@PostConstruct
 	public void init() {
 	    dMail = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userEmail");
+	    carList = facadeBL.getCarPlates(dMail);
+	    if (!carList.isEmpty()) {
+	        selectedCar = carList.get(0);
+	        selectedCarPlate = selectedCar.getPlate();
+	        eserleku = selectedCar.getSeats()-1;
+	    }
 	}
 	
 	public Date getData() {
@@ -69,14 +82,59 @@ public class CreateBean implements Serializable {
 		this.prezio = prezio;
 	}
 	
+	public List<Car> getCarList() {
+		return carList;
+	}
+
+	public void setCarList(List<Car> carList) {
+		this.carList = carList;
+	}
+
+	public Car getSelectedCar() {
+		return selectedCar;
+	}
+
+	public String getSelectedCarPlate() {
+		return selectedCarPlate;
+	}
+
+	public void setSelectedCarPlate(String selectedCarPlate) {
+		this.selectedCarPlate = selectedCarPlate;
+		if (selectedCarPlate != null) {
+	        for (Car c : carList) {
+	            if (c.getPlate().equals(selectedCarPlate)) {
+	                this.selectedCar = c;
+	                this.eserleku = c.getSeats()-1;
+	                break;
+	            }
+	        }
+	    }
+	}
+
+	public void setSelectedCar(Car selectedCar) {
+		this.selectedCar = selectedCar;
+		if (selectedCar != null) {
+			this.eserleku = selectedCar.getSeats();
+		}
+	}
+
 	public String menuEraman() {
 		return "menu";
 	}
 	
+	public List<String> getCarPlates(){
+		List<String> plateList = new Vector<String>();
+		for (Car c : carList) {
+			plateList.add(c.getPlate());
+		}
+		return plateList;
+	}
+
+	
 	public String createRide() {
 		System.out.println("DEBUG createRide(): nondik=" + nondik + " nora=" + nora + " data=" + data + " eserleku=" + eserleku + " prezio=" + prezio);
         try {
-            Ride r = facadeBL.createRide(nondik, nora, data, eserleku, prezio, dMail);
+            Ride r = facadeBL.createRide(nondik, nora, data, eserleku, prezio, dMail, selectedCar);
             if (r == null) {
                 FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN, "Ride couldn't be created.", null));

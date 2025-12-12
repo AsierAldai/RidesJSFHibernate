@@ -20,7 +20,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		
 		    dbManager=new HibernateDataAccess();
 		    
-		    dbManager.initializeDB();
+		    //dbManager.initializeDB();
 		    
 		//dbManager.close();
 
@@ -33,7 +33,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		
 		dbManager=da;	
 		
-		dbManager.initializeDB();
+		//dbManager.initializeDB();
 	}
     
     
@@ -60,9 +60,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	/**
 	 * {@inheritDoc}
 	 */
-   public Ride createRide( String from, String to, Date date, int nPlaces, float price, String driverEmail ) throws RideMustBeLaterThanTodayException, RideAlreadyExistException{
+   public Ride createRide( String from, String to, Date date, int nPlaces, float price, String driverEmail, Car car) throws RideMustBeLaterThanTodayException, RideAlreadyExistException{
 	   
-		Ride ride=dbManager.createRide(from, to, date, nPlaces, price, driverEmail);		
+		Ride ride=dbManager.createRide(from, to, date, nPlaces, price, driverEmail, car);		
 		return ride;
    };
 	
@@ -101,6 +101,10 @@ public class BLFacadeImplementation  implements BLFacade {
 	
 	public Car addCar(String plate, int seats, String dMail) throws Exception{
 		return dbManager.addCar(plate, seats, dMail);
+	}
+	
+	public List<Car> getCarPlates(String dMail){
+		return dbManager.getCarPlates(dMail);
 	}
 
 }
